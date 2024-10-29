@@ -27,7 +27,3 @@ def liste_nombres_premiers(limite):
 # Exemple d'utilisation du code
 limite = 100  # Limite jusqu'à laquelle on souhaite lister les nombres premiers
 print(f"Les nombres premiers jusqu'à {limite} sont : {liste_nombres_premiers(limite)}")
-
-
-
-DASILVAPaul-test
