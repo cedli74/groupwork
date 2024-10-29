@@ -1,5 +1,16 @@
 # Fonction pour vérifier si un nombre est premier
 def est_premier(n):
+    """
+    Vérifie si un nombre est un nombre premier.
+
+    Un nombre premier est un nombre entier supérieur à 1 qui n'est divisible que par 1 et lui-même.
+
+    Paramètres:
+    n (int): Le nombre à vérifier.
+
+    Retourne:
+    bool: True si le nombre est premier, False sinon.
+    """
     # Les nombres inférieurs ou égaux à 1 ne sont pas premiers
     if n <= 1:
         return False
@@ -13,6 +24,15 @@ def est_premier(n):
 
 # Fonction pour générer la liste de tous les nombres premiers jusqu'à une certaine limite
 def liste_nombres_premiers(limite):
+    """
+    Génère une liste de nombres premiers jusqu'à une limite donnée.
+
+    Paramètres:
+    limite (int): La limite jusqu'à laquelle rechercher les nombres premiers.
+
+    Retourne:
+    list: Une liste contenant tous les nombres premiers jusqu'à la limite spécifiée.
+    """
     # Liste pour stocker les nombres premiers
     nombres_premiers = []
     # Parcours de tous les nombres de 2 jusqu'à la limite donnée
@@ -27,3 +47,4 @@ def liste_nombres_premiers(limite):
 # Exemple d'utilisation du code
 limite = 100  # Limite jusqu'à laquelle on souhaite lister les nombres premiers
 print(f"Les nombres premiers jusqu'à {limite} sont : {liste_nombres_premiers(limite)}")
+
