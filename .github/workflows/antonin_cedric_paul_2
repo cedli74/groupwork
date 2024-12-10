@@ -1,1 +1,29 @@
 
+name: Workflow Simple Bonjour
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch: # Permet de lancer manuellement le workflow
+
+jobs:
+  display-message:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@v3
+
+      - name: Créer un fichier texte
+        run: |
+          echo "Bonjour, Workflow !" > message.txt
+
+      - name: Télécharger le fichier texte
+        uses: actions/upload-artifact@v3
+        with:
+          name: message
+          path: message.txt
