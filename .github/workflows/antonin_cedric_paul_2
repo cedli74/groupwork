@@ -1,29 +1,27 @@
-
-name: Workflow Simple Bonjour
+name: Génération PDF Bonjour
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
   workflow_dispatch: # Permet de lancer manuellement le workflow
 
 jobs:
-  display-message:
+  generate-pdf:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Récupérer le code
+      - name: Récupération du code
         uses: actions/checkout@v3
 
-      - name: Créer un fichier texte
+      - name: Installer les dépendances
         run: |
-          echo "Bonjour, Workflow !" > message.txt
+          python -m pip install --upgrade pip
+          pip install fpdf
 
-      - name: Télécharger le fichier texte
+      - name: Générer le fichier PDF
+        run: |
+          python -c "from fpdf import FPDF; pdf = FPDF(); pdf.add_page(); pdf.set_font('Arial', size=14); pdf.cell(190, 10, txt='Bonjour', ln=True); pdf.output('bonjour.pdf')"
+
+      - name: Téléverser le PDF comme artefact
         uses: actions/upload-artifact@v3
         with:
-          name: message
-          path: message.txt
+          name: bonjour-pdf
+          path: bonjour.pdf
