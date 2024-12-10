@@ -1,0 +1,40 @@
+name: Pytest CI
+
+# Déclenche le workflow lors des push ou pull requests sur la branche 'main'
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest # Utilise une machine virtuelle Ubuntu
+
+    steps:
+    # Étape 1 : Cloner le dépôt
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # Étape 2 : Configurer Python
+    - name: Set up Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.9' # Changez la version si nécessaire
+
+    # Étape 3 : Installer les dépendances
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    # Étape 4 : Exécuter les tests avec pytest
+    - name: Run tests
+      run: pytest --html=report.html --self-contained-html
+
+    # Étape 5 : Uploader le rapport de tests comme artefact
+    - name: Upload test report
+      uses: actions/upload-artifact@v3
+      with:
+        name: pytest-report
+        path: report.html
