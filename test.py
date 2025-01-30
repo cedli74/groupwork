@@ -1,4 +1,5 @@
 import pytest
+from nombre_premier import est_premier, liste_nombres_premiers
 
 # Assurez-vous que les fonctions est_premier et liste_nombres_premiers sont déjà définies
 
