@@ -13,7 +13,11 @@ pipeline {
         }
         stage('Tests Unitaires') {
             steps {
-                bat 'echo Running unit tests...'  // Remplace par la commande réelle pour exécuter les tests
+                bat '''
+                    echo Running unit tests...
+                    pytest --max-fail=1 --disable-warnings
+                    '''
+                
             }
         }
         stage('Build') {
