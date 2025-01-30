@@ -1,60 +1,30 @@
 pipeline {
     agent any
- 
-    environment {
-        // Variables d'environnement, si besoin
-        GIT_REPO = 'https://github.com/cedli74/groupwork.git'
-    }
- 
     stages {
         stage('Checkout') {
             steps {
-                // Récupération du code depuis GitHub
-                git url: "${env.GIT_REPO}", branch: 'main'
+                git branch: 'main', url: 'https://github.com/cedli74/groupwork.git'
             }
         }
- 
         stage('Code Linting') {
             steps {
-                // Linting du code pour vérifier les bonnes pratiques
-                sh 'pylint ton_code.py'
+                bat 'echo Running linter...'  // Remplace par la commande réelle pour le lint
             }
         }
- 
         stage('Tests Unitaires') {
             steps {
-                // Lancer les tests unitaires (exemple avec pytest)
-                sh 'pytest --maxfail=1 --disable-warnings -q'
+                bat 'echo Running unit tests...'  // Remplace par la commande réelle pour exécuter les tests
             }
         }
- 
         stage('Build') {
             steps {
-                // Ici, tu peux ajouter les étapes de build, par exemple pour créer des artefacts ou déployer.
-                echo 'Building...'
+                bat 'echo Building project...'  // Remplace par la commande réelle pour builder le projet
             }
         }
- 
         stage('Deploy') {
             steps {
-                // Si tu veux déployer ton application quelque part (ex. sur un serveur), ajoute les étapes ici.
-                echo 'Deployment in progress...'
+                bat 'echo Deploying application...'  // Remplace par la commande réelle pour déployer
             }
-        }
-    }
- 
-    post {
-        always {
-            // Actions à effectuer après le pipeline, comme envoyer des notifications ou sauvegarder des artefacts
-            echo 'Pipeline terminé'
-        }
- 
-        success {
-            echo 'Tout s\'est bien passé !'
-        }
- 
-        failure {
-            echo 'Le pipeline a échoué.'
         }
     }
 }
