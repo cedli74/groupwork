@@ -3,22 +3,22 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/cedli74/groupwork.git'
+                git branch: 'main', url: 'https://github.com/cedli74/groupwork.git'
             }
         }
         stage('Install dependencies') {
             steps {
-                bat 'echo Installing dependencies'  // Remplace par la commande réelle
+                bat 'npm install'
             }
         }
         stage('Lint') {
             steps {
-                bat 'echo Running linter'  // Remplace par la commande réelle
+                bat 'npm run lint'
             }
         }
         stage('Unit Tests') {
             steps {
-                bat 'echo Running unit tests'  // Remplace par la commande réelle
+                bat 'npm test'
             }
         }
     }
