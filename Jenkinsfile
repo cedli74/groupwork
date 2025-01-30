@@ -15,7 +15,7 @@ pipeline {
             steps {
                 bat '''
                     echo Running unit tests...
-                    python -m pytest --maxfail=1 --disable-warnings
+                    python -m pytest . --maxfail=1 --disable-warnings
                     '''
                 
             }
